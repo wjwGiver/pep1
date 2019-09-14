@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableConfigurationProperties
 @EnableTransactionManagement
 @SpringBootApplication
-@MapperScan("com.just.teachersystem.DAO")
+@MapperScan("com.just.teachersystem.Mapper")
 public class TeachersystemApplication {
 
     public static void main(String[] args) {
