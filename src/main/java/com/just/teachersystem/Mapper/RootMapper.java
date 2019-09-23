@@ -3,8 +3,8 @@ package com.just.teachersystem.Mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 普通用户Mapper
+ * 超级管理员Mapper
  */
 @Mapper
-public interface UserMapper {
+public interface RootMapper {
 }

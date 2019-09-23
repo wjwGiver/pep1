@@ -86,6 +86,14 @@
             <artifactId>pagehelper</artifactId>
             <version>4.1.6</version>
         </dependency>
+        <!--excel工具包-->
+
+
+        <dependency>
+            <groupId>com.github.andyczy</groupId>
+            <artifactId>java-excel-utils</artifactId>
+            <version>4.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -20,7 +20,7 @@ public class FileUtills {
 
 
         private static int k=0;
-        @Value("${file.path}")
+
         private String basePath;
 
         public String filesupload(List<MultipartFile> files){
