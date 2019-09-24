@@ -4,14 +4,14 @@ package com.just.teachersystem.Entity;
 public class Performance {
 
   private long id;
-  private long dptId;
-  private long computeofficeId;
-  private String type;
-  private String year;
-  private String project;
-  private String master;
-  private long points;
-  private String null1;
+  private long dptId;//部门
+  private long computeofficeId;//计算科室
+  private String type;//类别
+  private String year;//立项年度
+  private String project;//项目名称
+  private String master;//项目负责人
+  private long points;//业绩分
+  private String null1;//空字段
   private String null2;
   private String null3;
 

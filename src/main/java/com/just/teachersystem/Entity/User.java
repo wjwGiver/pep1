@@ -30,7 +30,4 @@ public class User {
   private String null1;//预留空字段
   private String null2;//预留空字段
   private String null3;//预留空字段
-
-
-
 }

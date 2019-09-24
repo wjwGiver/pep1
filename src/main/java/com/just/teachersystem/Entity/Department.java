@@ -3,9 +3,9 @@ package com.just.teachersystem.Entity;
 
 public class Department {
 
-  private long id;
-  private String dptId;
-  private String dptname;
+  private long id;//序号
+  private String dptId;//单位号
+  private String dptname;//部门名称
 
 
   public long getId() {
