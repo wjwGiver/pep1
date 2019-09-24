@@ -1,4 +1,5 @@
 package com.just.teachersystem.Service;
+import com.just.teachersystem.VO.UserInfo;
 import org.springframework.stereotype.Service;
 
 import	java.util.Map;
@@ -9,4 +10,5 @@ import	java.util.Map;
 @Service
 public interface CommonService {
     Map<String, Object> login(String worknum, String password);
+    int updateUserInfo(UserInfo userInfo);
 }

@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 
 import com.just.teachersystem.Utill.JsonData;
 import com.just.teachersystem.Utill.JwtUtils;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-@Component
-public class OnlineIntercepter implements HandlerInterceptor {
+public class OfficeAdminIntercepter implements HandlerInterceptor {
     /**
      * 进入controller 之前
      * @param request
@@ -37,7 +35,10 @@ public class OnlineIntercepter implements HandlerInterceptor {
         }
 //        System.out.println(JwtUtils.checkJWT(token).get("worknum"));
         if(JwtUtils.checkJWT(token)!=null){
-            return true;
+            if((int)JwtUtils.checkJWT(token).get("permission")==2){
+                return true;
+            }
+            printJson(response,-1,"你没有操作权限");
         }
         printJson(response,-1,"token过期,请重新登陆");
         return false;
@@ -87,5 +88,4 @@ public class OnlineIntercepter implements HandlerInterceptor {
             e.printStackTrace();
         }
     }
-
 }

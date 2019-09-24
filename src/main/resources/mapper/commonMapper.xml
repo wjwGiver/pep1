@@ -4,4 +4,28 @@
     <select id="getInfo" parameterType="String" resultType="com.just.teachersystem.VO.UserInfo">
       select * from userInfo where worknum=#{worknum}
     </select>
+
+    <update id="updateUserInfo" parameterType="com.just.teachersystem.VO.UserInfo">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="dptname!=null">dptId=(select id from department where dptname=#{dptname}),</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="gender!=null">gender=#{gender},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="birthday!=null">birthday=#{birthday},</if>
+            <if test="enterTime!=null">enterTime=#{enterTime},</if>
+            <if test="techTittle!=null">techTittle=#{techTittle},</if>
+            <if test="eduBgd!=null">eduBgd=#{eduBgd},</if>
+            <if test="degree!=null">degree=#{degree},</if>
+            <if test="school!=null">school=#{school},</if>
+            <if test="doubleTeacher!=null">doubleTeacher=#{doubleTeacher},</if>
+            <if test="background!=null">background=#{background},</if>
+            <if test="major!=null">major=#{major},</if>
+            <if test="tutor!=null">tutor=#{tutor},</if>
+            <if test="permission!=null">permission=#{permission}</if>
+        </trim>
+        WHERE worknum=#{worknum}
+
+    </update>
 </mapper>

@@ -1,7 +1,6 @@
 package com.just.teachersystem.Intercepter;
 
 import com.alibaba.fastjson.JSON;
-
 import com.just.teachersystem.Utill.JsonData;
 import com.just.teachersystem.Utill.JwtUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-public class AdminIntercepter implements HandlerInterceptor {
+public class RootIntercepter implements HandlerInterceptor {
     /**
      * 进入controller 之前
      * @param request
@@ -24,23 +23,23 @@ public class AdminIntercepter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String token= request.getHeader("access_token");
+        String token= request.getHeader("token");
 //        System.out.println(token);
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
         if(token==null||token.equals("")){
-            printJson(response,0,"token 为空，请登陆！");
+            printJson(response,-1,"token 为空，请登陆！");
             return false;
         }
 //        System.out.println(JwtUtils.checkJWT(token).get("worknum"));
         if(JwtUtils.checkJWT(token)!=null){
-            if((int)JwtUtils.checkJWT(token).get("isAdmin")>0){
+            if((int)JwtUtils.checkJWT(token).get("permission")>2){
                 return true;
             }
-            printJson(response,0,"你没有操作权限");
+            printJson(response,-1,"你没有操作权限");
         }
-        printJson(response,0,"token过期,请重新登陆");
+        printJson(response,-1,"token过期,请重新登陆");
         return false;
     }
 

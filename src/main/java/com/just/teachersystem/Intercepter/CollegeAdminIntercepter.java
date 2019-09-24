@@ -1,9 +1,10 @@
 package com.just.teachersystem.Intercepter;
+import	java.security.Permission;
 
 import com.alibaba.fastjson.JSON;
-
 import com.just.teachersystem.Utill.JsonData;
 import com.just.teachersystem.Utill.JwtUtils;
+import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 @Component
-public class OnlineIntercepter implements HandlerInterceptor {
+public class CollegeAdminIntercepter implements HandlerInterceptor {
     /**
      * 进入controller 之前
      * @param request
@@ -36,11 +37,17 @@ public class OnlineIntercepter implements HandlerInterceptor {
             return false;
         }
 //        System.out.println(JwtUtils.checkJWT(token).get("worknum"));
+
         if(JwtUtils.checkJWT(token)!=null){
-            return true;
+            if((int)JwtUtils.checkJWT(token).get("permission")==1){
+                return true;
+            }
+            printJson(response,-1,"你没有操作权限");
         }
         printJson(response,-1,"token过期,请重新登陆");
         return false;
+
+
     }
 
     /**
